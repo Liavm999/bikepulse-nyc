@@ -1,0 +1,13 @@
+services:
+  bikepulse:
+    build: .
+    environment:
+      BIKEPULSE_DATA_DIR: /app/data
+      BIKEPULSE_DB_PATH: /app/data/warehouse/bikepulse.duckdb
+    volumes:
+      - bikepulse-data:/app/data
+      - ./outputs:/app/outputs
+
+volumes:
+  bikepulse-data:
+
