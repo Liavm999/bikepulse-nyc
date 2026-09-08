@@ -25,9 +25,15 @@ def initialize_schema(
     low_dock_threshold: int,
 ) -> None:
     sql = sql_path.read_text(encoding="utf-8")
-    sql = sql.replace("{{ low_bike_threshold }}", str(low_bike_threshold))
-    sql = sql.replace("{{ low_dock_threshold }}", str(low_dock_threshold))
     connection.execute(sql)
+    connection.execute(
+        """
+        UPDATE core.pipeline_config
+        SET low_bike_threshold = ?, low_dock_threshold = ?
+        WHERE config_id = 1
+        """,
+        [low_bike_threshold, low_dock_threshold],
+    )
 
 
 def load_run(

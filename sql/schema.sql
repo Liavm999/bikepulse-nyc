@@ -2,6 +2,16 @@ CREATE SCHEMA IF NOT EXISTS core;
 CREATE SCHEMA IF NOT EXISTS marts;
 CREATE SCHEMA IF NOT EXISTS audit;
 
+CREATE TABLE IF NOT EXISTS core.pipeline_config (
+    config_id INTEGER PRIMARY KEY,
+    low_bike_threshold INTEGER NOT NULL,
+    low_dock_threshold INTEGER NOT NULL,
+    CHECK (config_id = 1),
+    CHECK (low_bike_threshold >= 0),
+    CHECK (low_dock_threshold >= 0)
+);
+INSERT OR IGNORE INTO core.pipeline_config VALUES (1, 3, 3);
+
 CREATE TABLE IF NOT EXISTS core.dim_station (
     station_id VARCHAR PRIMARY KEY,
     station_name VARCHAR NOT NULL,
@@ -70,11 +80,12 @@ SELECT
     w.wind_speed_kmh,
     CASE
         WHEN NOT s.is_installed OR NOT s.is_renting OR NOT s.is_returning THEN 'offline'
-        WHEN s.bikes_available <= {{ low_bike_threshold }} THEN 'low_bikes'
-        WHEN s.docks_available <= {{ low_dock_threshold }} THEN 'low_docks'
+        WHEN s.bikes_available <= c.low_bike_threshold THEN 'low_bikes'
+        WHEN s.docks_available <= c.low_dock_threshold THEN 'low_docks'
         ELSE 'healthy'
     END AS health_status,
     CASE WHEN d.capacity > 0 THEN s.bikes_available::DOUBLE / d.capacity END AS bike_fill_ratio
 FROM core.fact_station_status AS s
 JOIN core.dim_station AS d USING (station_id)
-LEFT JOIN core.fact_weather AS w USING (run_id);
+LEFT JOIN core.fact_weather AS w USING (run_id)
+CROSS JOIN core.pipeline_config AS c;
