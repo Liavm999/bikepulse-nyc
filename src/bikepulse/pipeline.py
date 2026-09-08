@@ -29,11 +29,15 @@ def run_pipeline(
     ingestion = ingest_snapshot(settings, source=source, run_id=run_id)
     staging = build_staging(settings, ingestion)
     with connect(settings) as connection:
-        initialize_schema(connection, settings.project_root / "sql" / "schema.sql")
+        initialize_schema(
+            connection,
+            settings.project_root / "sql" / "schema.sql",
+            low_bike_threshold=settings.low_bike_threshold,
+            low_dock_threshold=settings.low_dock_threshold,
+        )
         load_run(connection, settings, staging)
         checks = assert_run_quality(connection, staging.run_id)
         summary = export_outputs(
             connection, run_id=staging.run_id, output_dir=settings.project_root / "outputs"
         )
     return PipelineResult(run_id=staging.run_id, checks=checks, summary=summary)
-

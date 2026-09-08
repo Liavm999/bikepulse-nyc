@@ -17,8 +17,17 @@ def connect(settings: Settings) -> duckdb.DuckDBPyConnection:
     return duckdb.connect(str(settings.database_path))
 
 
-def initialize_schema(connection: duckdb.DuckDBPyConnection, sql_path: Path) -> None:
-    connection.execute(sql_path.read_text(encoding="utf-8"))
+def initialize_schema(
+    connection: duckdb.DuckDBPyConnection,
+    sql_path: Path,
+    *,
+    low_bike_threshold: int,
+    low_dock_threshold: int,
+) -> None:
+    sql = sql_path.read_text(encoding="utf-8")
+    sql = sql.replace("{{ low_bike_threshold }}", str(low_bike_threshold))
+    sql = sql.replace("{{ low_dock_threshold }}", str(low_dock_threshold))
+    connection.execute(sql)
 
 
 def load_run(
@@ -103,4 +112,3 @@ def load_run(
     except Exception:
         connection.execute("ROLLBACK")
         raise
-
