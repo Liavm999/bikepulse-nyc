@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bikepulse-nyc"
+version = "0.1.0"
+description = "Incremental Citi Bike station-health data pipeline"
+requires-python = ">=3.11"
+dependencies = ["duckdb==1.3.2"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.4.1", "ruff==0.12.7"]
+
+[project.scripts]
+bikepulse = "bikepulse.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
