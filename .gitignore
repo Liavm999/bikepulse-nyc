@@ -9,4 +9,4 @@ data/staging/
 data/warehouse/
 outputs/*.csv
 !outputs/.gitkeep
-
+!outputs/stations_needing_attention.csv

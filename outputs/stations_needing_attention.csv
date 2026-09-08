@@ -1,0 +1,26 @@
+station_name,bikes_available,docks_available,disabled_assets,health_status,bike_fill_ratio
+2 Ave & 36 St,0,0,35,offline,0.0
+Eastern Pkwy & Ralph Ave,1,0,25,offline,0.05
+Rockaway Pkwy & Winthrop St,0,0,18,offline,0.0
+21 St & 20 Ave,0,0,0,offline,0.0
+24 Ave & 92 St,0,0,0,offline,
+3 St & Hoyt St,0,0,0,offline,0.0
+4 Ave & 76 St,0,0,0,offline,0.0
+4 Ave & 85 St,0,0,0,offline,0.0
+51 Ave & Junction Blvd,0,0,0,offline,0.0
+61 St & Borden Ave,0,0,0,offline,
+65 Pl & 53 Ave,0,0,0,offline,0.0
+Barrow St & Hudson St,0,0,0,offline,0.0
+Blake Ave & Schenck Ave,0,0,0,offline,0.0
+Bradford St & Dumont Ave,0,0,0,offline,0.0
+Dumont Ave & Barbey St,0,0,0,offline,0.0
+E 18 St & Church Ave,0,0,0,offline,0.0
+Eastern Pkwy & Franklin Ave (NE Corner),0,0,0,offline,
+Lafayette Ave & Hunts Point Ave,0,0,0,offline,0.0
+Livonia Ave & Powell St,0,0,0,offline,
+Longfellow Ave & Aldus St,0,0,0,offline,0.0
+Matthews Ct & Coney Island Ave,0,0,0,offline,
+New Lots Ave & Van Sinderen Ave,0,0,0,offline,
+Van Siclen Ave & Linden Blvd,0,0,0,offline,
+Vesey St & Church St,0,0,0,offline,0.0
+Willmohr St & Rockaway Pkwy,0,0,0,offline,

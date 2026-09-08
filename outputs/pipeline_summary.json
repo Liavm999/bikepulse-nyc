@@ -1,0 +1,10 @@
+{
+  "run_id": "demo-20260908",
+  "station_count": 200,
+  "health_breakdown": {
+    "healthy": 83,
+    "low_bikes": 49,
+    "low_docks": 43,
+    "offline": 25
+  }
+}
