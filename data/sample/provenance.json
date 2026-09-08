@@ -1,0 +1,11 @@
+{
+  "captured_at": "2026-09-08T13:47:17.020648+00:00",
+  "description": "Compact unmodified records captured from the configured public APIs.",
+  "station_count": 200,
+  "status_count": 200,
+  "sources": {
+    "station_information": "https://gbfs.citibikenyc.com/gbfs/en/station_information.json",
+    "station_status": "https://gbfs.citibikenyc.com/gbfs/en/station_status.json",
+    "weather": "https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&current=temperature_2m,precipitation,wind_speed_10m&timezone=UTC"
+  }
+}
